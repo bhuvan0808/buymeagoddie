@@ -11,7 +11,7 @@ export const siteConfig = {
   ogImage: "/og.png",
   links: {
     twitter: "https://twitter.com/buymeagoddie",
-    github: "https://github.com/buymeagoddie",
+    github: "https://github.com/bhuvan0808/buymeagoddie",
     instagram: "https://instagram.com/buymeagoddie",
     linkedin: "https://linkedin.com/company/buymeagoddie",
   },

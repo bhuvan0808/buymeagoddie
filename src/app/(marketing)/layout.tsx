@@ -1,12 +1,15 @@
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SmoothScroll } from "@/components/providers/smooth-scroll";
+import { getGitHubStars } from "@/lib/github";
 
-export default function MarketingLayout({
+export default async function MarketingLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const stars = await getGitHubStars();
+
   return (
     <SmoothScroll>
       <a
@@ -15,9 +18,9 @@ export default function MarketingLayout({
       >
         Skip to content
       </a>
-      <SiteHeader />
+      <SiteHeader stars={stars} />
       <main id="main">{children}</main>
-      <SiteFooter />
+      <SiteFooter stars={stars} />
     </SmoothScroll>
   );
 }

@@ -1,5 +1,10 @@
 # BuyMeAGoddie
 
+[![Live](https://img.shields.io/badge/live-buymeagoddie.vercel.app-8b5cf6)](https://buymeagoddie.vercel.app)
+[![GitHub stars](https://img.shields.io/github/stars/bhuvan0808/buymeagoddie?style=flat&color=f5c451)](https://github.com/bhuvan0808/buymeagoddie/stargazers)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-d946ef.svg)](CONTRIBUTING.md)
+
 A creator payment profile platform. Creators get a beautiful support page; supporters pay them **directly** over their country's instant payment rail (UPI for India at launch). The platform **never** receives, holds, or routes money.
 
 ```
@@ -83,6 +88,10 @@ Every rail is a `PaymentMethodDefinition` (`src/features/payments/types.ts`): id
 - Row Level Security on all tables; users can only write their own rows.
 - All mutations go through Server Actions with Zod validation; DB constraints mirror app rules (username format, reserved names, URL https-only).
 - Middleware refreshes sessions and enforces auth boundaries; security headers set in `next.config.ts`.
+
+## Contributing
+
+BuyMeAGoddie is open source under the [MIT license](LICENSE). Issues and PRs are welcome — the most valuable contribution is a new payment rail (Pix, PayNow, PromptPay, …), which is a single provider file thanks to the registry architecture. See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Scripts
 

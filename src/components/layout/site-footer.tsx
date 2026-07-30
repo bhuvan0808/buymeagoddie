@@ -1,10 +1,11 @@
 import Link from "next/link";
 
+import { GitHubStarButton } from "@/components/shared/github-star-button";
 import { Logo } from "@/components/shared/logo";
 import { Badge } from "@/components/ui/badge";
 import { footerNav, siteConfig } from "@/lib/site";
 
-export function SiteFooter() {
+export function SiteFooter({ stars = null }: { stars?: number | null }) {
   return (
     <footer className="relative border-t border-border/60">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
@@ -18,6 +19,13 @@ export function SiteFooter() {
             <Badge variant="gold" className="w-fit">
               Made for creators in India 🇮🇳
             </Badge>
+            <div className="mt-1 flex flex-col gap-2">
+              <p className="text-xs text-muted-foreground">
+                Proudly open source under the MIT license. Contributions and
+                PRs welcome.
+              </p>
+              <GitHubStarButton stars={stars} className="w-fit" />
+            </div>
           </div>
 
           {footerNav.map((group) => (

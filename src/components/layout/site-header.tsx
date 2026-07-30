@@ -5,6 +5,7 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
+import { GitHubStarButton } from "@/components/shared/github-star-button";
 import { Logo } from "@/components/shared/logo";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Button } from "@/components/ui/button";
@@ -15,7 +16,7 @@ import { cn } from "@/lib/utils";
 /**
  * Sticky navigation that gains a glass blur once the page scrolls.
  */
-export function SiteHeader() {
+export function SiteHeader({ stars = null }: { stars?: number | null }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -53,6 +54,7 @@ export function SiteHeader() {
         </ul>
 
         <div className="hidden items-center gap-2 lg:flex">
+          <GitHubStarButton stars={stars} />
           <ThemeToggle />
           <Button variant="ghost" asChild>
             <Link href={ROUTES.login}>Login</Link>
@@ -98,6 +100,7 @@ export function SiteHeader() {
                 </li>
               ))}
               <li className="mt-2 flex flex-col gap-2">
+                <GitHubStarButton stars={stars} className="w-full" />
                 <Button variant="outline" asChild>
                   <Link href={ROUTES.login}>Login</Link>
                 </Button>
