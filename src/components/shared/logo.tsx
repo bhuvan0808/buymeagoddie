@@ -1,10 +1,12 @@
 import Link from "next/link";
 
+import { GoddieMark } from "@/components/shared/goddie-mark";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 /**
- * Wordmark: a gradient coin glyph + "BuyMeAGoddie".
+ * Wordmark: the Goddie gift mark + lowercase "buymeagoddie",
+ * with the brand gradient sweeping across "meagoddie".
  */
 export function Logo({
   className,
@@ -20,14 +22,9 @@ export function Logo({
         className,
       )}
     >
-      <span
-        aria-hidden
-        className="bg-gradient-brand relative inline-flex size-7 items-center justify-center rounded-full text-[13px] font-extrabold text-white shadow-[0_2px_12px_-2px] shadow-brand-violet/60"
-      >
-        ₹
-      </span>
+      <GoddieMark className="size-8" />
       <span>
-        BuyMeA<span className="text-gradient">Goddie</span>
+        buy<span className="text-gradient">meagoddie</span>
       </span>
     </span>
   );

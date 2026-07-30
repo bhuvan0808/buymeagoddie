@@ -4,7 +4,6 @@ import { Faq } from "@/features/marketing/components/faq";
 import { Features } from "@/features/marketing/components/features";
 import { Hero } from "@/features/marketing/components/hero";
 import { HowItWorks } from "@/features/marketing/components/how-it-works";
-import { Pricing } from "@/features/marketing/components/pricing";
 import { SocialProof } from "@/features/marketing/components/social-proof";
 import {
   JsonLd,
@@ -25,7 +24,6 @@ export default function HomePage() {
       <HowItWorks />
       <Features />
       <DemoProfile />
-      <Pricing />
       <Faq />
       <Cta />
     </>
