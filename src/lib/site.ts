@@ -11,6 +11,8 @@ export const siteConfig = {
   ogImage: "/og.png",
   /** Where "Support BuyMeAGoddie" payments go — directly, over UPI. */
   supportUpiId: "bhuvan08@ptyes",
+  /** Support + security contact until a custom domain email exists. */
+  supportEmail: "bhuvanboddu08@gmail.com",
   links: {
     twitter: "https://twitter.com/buymeagoddie",
     github: "https://github.com/bhuvan0808/buymeagoddie",

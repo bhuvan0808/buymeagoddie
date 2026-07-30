@@ -3,6 +3,7 @@
 import { redirect } from "next/navigation";
 import { headers } from "next/headers";
 
+import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import { ROUTES } from "@/lib/constants";
 import {
@@ -49,8 +50,40 @@ export async function signUpWithPassword(
     return { ok: false, error: parsed.error.issues[0]!.message };
   }
 
-  const origin = await getOrigin();
   const supabase = await createClient();
+
+  // Auto-confirm signups: create the user pre-verified via the admin API,
+  // then sign them in immediately. No email round-trip until the project
+  // has a custom domain + branded SMTP for confirmation emails.
+  const admin = createAdminClient();
+  if (admin) {
+    const { error: createError } = await admin.auth.admin.createUser({
+      email: parsed.data.email,
+      password: parsed.data.password,
+      email_confirm: true,
+    });
+    if (createError) {
+      const alreadyExists =
+        createError.code === "email_exists" ||
+        /already.*(registered|exists)/i.test(createError.message);
+      return {
+        ok: false,
+        error: alreadyExists
+          ? "That email already has an account — try signing in instead."
+          : "Couldn't create your account. Try again.",
+      };
+    }
+    const { error: signInError } = await supabase.auth.signInWithPassword(
+      parsed.data,
+    );
+    if (signInError) {
+      return { ok: false, error: "Account created — sign in to continue." };
+    }
+    redirect(ROUTES.onboarding);
+  }
+
+  // Fallback (no secret key configured): standard email-confirmation flow.
+  const origin = await getOrigin();
   const { data, error } = await supabase.auth.signUp({
     ...parsed.data,
     options: { emailRedirectTo: `${origin}${ROUTES.authCallback}` },
@@ -59,7 +92,6 @@ export async function signUpWithPassword(
     return { ok: false, error: error.message };
   }
   if (data.session) {
-    // Email confirmation disabled in this project — user is signed in.
     redirect(ROUTES.onboarding);
   }
   return {

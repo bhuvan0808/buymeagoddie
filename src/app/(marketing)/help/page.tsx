@@ -45,7 +45,7 @@ export default function HelpPage() {
         ))}
       </Accordion>
       <p>
-        Still stuck? Email <strong>support@buymeagoddie.com</strong> — a
+        Still stuck? Email <strong>bhuvanboddu08@gmail.com</strong> — a
         human answers.
       </p>
     </ContentPage>

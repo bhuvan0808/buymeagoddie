@@ -38,7 +38,7 @@ export default function SecurityPage() {
       </ul>
       <h2>Reporting a vulnerability</h2>
       <p>
-        Found something? Email security@buymeagoddie.com — we respond fast
+        Found something? Email bhuvanboddu08@gmail.com — we respond fast
         and appreciate responsible disclosure.
       </p>
     </ContentPage>

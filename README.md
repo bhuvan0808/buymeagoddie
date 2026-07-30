@@ -109,7 +109,7 @@ No UI changes needed — country selection, onboarding, profile pages, and QR co
 
 - 🚫 Never add code that asks for or stores UPI PINs, OTPs, bank passwords, or card numbers. We only ever store **public** payment identifiers.
 - 🚫 No code paths where the platform touches money. Supporter → creator, always.
-- 🔒 Security issues: **don't** open a public issue — email security@buymeagoddie.com.
+- 🔒 Security issues: **don't** open a public issue — email bhuvanboddu08@gmail.com.
 
 ## 📄 License
 

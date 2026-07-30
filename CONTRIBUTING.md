@@ -30,4 +30,4 @@ This is the most-wanted kind of contribution:
 
 ## Reporting issues
 
-Use [GitHub Issues](https://github.com/bhuvan0808/buymeagoddie/issues). For security vulnerabilities, please do **not** open a public issue — email security@buymeagoddie.com instead.
+Use [GitHub Issues](https://github.com/bhuvan0808/buymeagoddie/issues). For security vulnerabilities, please do **not** open a public issue — email bhuvanboddu08@gmail.com instead.

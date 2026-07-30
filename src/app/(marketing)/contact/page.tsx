@@ -14,10 +14,10 @@ export default function ContactPage() {
       <p>We read everything. Pick the channel that suits you:</p>
       <ul>
         <li>
-          <strong>Support:</strong> support@buymeagoddie.com
+          <strong>Support:</strong> {siteConfig.supportEmail}
         </li>
         <li>
-          <strong>Security reports:</strong> security@buymeagoddie.com
+          <strong>Security reports:</strong> {siteConfig.supportEmail}
         </li>
         <li>
           <strong>Twitter/X:</strong>{" "}
