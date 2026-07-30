@@ -1,0 +1,4 @@
+# Every file in this repo requires an approving review from @bhuvan0808
+# before a PR can merge to main (enforced via branch protection's
+# "require review from Code Owners").
+* @bhuvan0808
