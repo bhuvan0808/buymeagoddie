@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
 
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { SupportWidget } from "@/components/shared/support-widget";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { siteConfig } from "@/lib/site";
@@ -92,6 +93,7 @@ export default function RootLayout({
         <ThemeProvider>
           <TooltipProvider delayDuration={200}>
             {children}
+            <SupportWidget />
             <Toaster position="bottom-right" />
           </TooltipProvider>
         </ThemeProvider>

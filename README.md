@@ -1,100 +1,118 @@
-# BuyMeAGoddie
+<div align="center">
+
+# 💜 BuyMeAGoddie
+
+**Receive support directly with UPI. No gateway. No fees. No middleman.**
 
 [![Live](https://img.shields.io/badge/live-buymeagoddie.vercel.app-8b5cf6)](https://buymeagoddie.vercel.app)
 [![GitHub stars](https://img.shields.io/github/stars/bhuvan0808/buymeagoddie?style=flat&color=f5c451)](https://github.com/bhuvan0808/buymeagoddie/stargazers)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-d946ef.svg)](CONTRIBUTING.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-d946ef.svg)](#-contributing)
 
-A creator payment profile platform. Creators get a beautiful support page; supporters pay them **directly** over their country's instant payment rail (UPI for India at launch). The platform **never** receives, holds, or routes money.
+[Live site](https://buymeagoddie.vercel.app) · [Report a bug](https://github.com/bhuvan0808/buymeagoddie/issues/new) · [Request a feature](https://github.com/bhuvan0808/buymeagoddie/issues/new)
+
+</div>
+
+---
+
+BuyMeAGoddie is an open-source creator payment profile platform. Creators get a beautiful support page; supporters pay them **directly** over their country's instant payment rail (UPI for India at launch). The platform **never** receives, holds, or routes money — and it's **free forever**, because the money physically can't pass through us.
 
 ```
-Supporter ──(UPI deep link / QR)──▶ Creator's bank
-                 ▲
-                 │  BuyMeAGoddie only renders the page.
+Supporter ──(UPI deep link / QR)──▶ Creator's bank account
+                    ▲
+                    │  BuyMeAGoddie only renders the page.
 ```
 
-## Stack
+## ✨ Features
 
-- **Frontend:** Next.js 15 (App Router, Server Components, Server Actions), React 19, TypeScript (strict), Tailwind CSS v4
-- **UI:** shadcn-style primitives on Radix UI, Lucide icons, glassmorphism design system
-- **Motion:** Framer Motion, GSAP-ready, Lenis smooth scrolling
-- **3D:** Three.js via React Three Fiber + Drei (hero scene)
-- **Forms:** React Hook Form + Zod (client and server validation share schemas)
-- **Backend:** Supabase — Auth (Google, email/password, magic link), Postgres with RLS, Storage (avatars)
-- **Deploy:** Vercel (frontend) + Supabase (backend)
+- 🎨 Premium creator pages — glassmorphism, 4 themes, dark/light mode, 3D animated landing
+- ⚡ One-tap UPI payments — `upi://pay` deep links open GPay / PhonePe / Paytm / BHIM pre-filled
+- 📱 QR codes everywhere — scan-to-pay for desktop supporters, page QR for posters & streams
+- 🔗 One link for every bio — Instagram, YouTube, LinkedIn, GitHub
+- 🌍 Built multi-rail from day one — Pix, PayNow, PromptPay, QRIS, SEPA Instant & Aani slot in without schema changes
+- 🆓 Zero platform fees, zero transaction fees, free forever
 
-## Getting started
+## 🛠 Tech stack
 
-1. **Install**
+| Layer | Tech |
+|---|---|
+| Framework | Next.js 15 (App Router, Server Components, Server Actions), React 19, strict TypeScript |
+| Styling | Tailwind CSS v4, shadcn-style primitives on Radix UI, Lucide icons |
+| Motion & 3D | Framer Motion, Lenis smooth scroll, Three.js via React Three Fiber + Drei |
+| Forms & validation | React Hook Form + Zod (schemas shared client/server) |
+| Backend | Supabase — Auth (Google, email/password, magic link), Postgres + RLS, Storage |
+| Hosting | Vercel |
 
-   ```bash
-   npm install
-   ```
+## 🚀 Getting started
 
-2. **Create a Supabase project** at [supabase.com](https://supabase.com/dashboard), then:
-   - Run the migration in `supabase/migrations/00001_initial_schema.sql` (SQL Editor → paste → run), or `npx supabase db push` if using the CLI.
-   - Enable **Google** under Auth → Providers (add your OAuth client), keep **Email** enabled.
-   - Set Auth → URL Configuration → Site URL to your domain (or `http://localhost:3000`) and add `/auth/callback` to redirect URLs.
+**Prerequisites:** Node 20+, npm, and a free [Supabase](https://supabase.com) account.
 
-3. **Environment** — copy `.env.example` to `.env.local` and fill in:
+```bash
+# 1. Clone (or fork first if you plan to contribute)
+git clone https://github.com/bhuvan0808/buymeagoddie.git
+cd buymeagoddie
+npm install
 
-   ```
-   NEXT_PUBLIC_SUPABASE_URL=...
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=...
-   NEXT_PUBLIC_SITE_URL=http://localhost:3000
-   ```
+# 2. Set up the database
+#    Create a Supabase project, open its SQL Editor, and run the contents of:
+#    supabase/migrations/00001_initial_schema.sql
 
-4. **Run**
+# 3. Configure environment
+cp .env.example .env.local
+#    Fill in NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY
+#    (Supabase Dashboard → Project Settings → API)
 
-   ```bash
-   npm run dev
-   ```
+# 4. Run
+npm run dev        # http://localhost:3000
+```
 
-## Architecture
+For auth flows to round-trip locally, add `http://localhost:3000/auth/callback` to Supabase → Auth → URL Configuration → Redirect URLs.
+
+## 🗂 Project structure
 
 ```
 src/
-  app/                    # Routes only — thin, compose features
-    (marketing)/          # Landing, legal, comparisons (public shell)
-    (auth)/               # Login / signup / password flows (glass card shell)
-    auth/callback/        # OAuth + email link exchange
-    onboarding/           # 4-step wizard
-    dashboard/            # Creator dashboard (protected by middleware)
-    [username]/           # Public creator pages
-  components/
-    ui/                   # Primitives (button, card, dialog, …)
-    shared/               # Logo, reveal animations, copy button, …
-    three/                # R3F hero scene
-    layout/, providers/
-  features/               # Feature-first domain logic
-    payments/             # ⭐ Generic rail registry — UPI active, Pix/PayNow/… declared
-    marketing/            # Landing sections + FAQ/comparison content
-    auth/                 # Server actions + forms
-    onboarding/           # Wizard + availability checks
-    dashboard/            # Queries + mutation actions + forms
-    profile/              # Shared ProfileCard (demo, previews, live page)
-  lib/                    # supabase clients, validation, constants, seo
-  types/                  # Database row types
-supabase/migrations/      # SQL schema, RLS policies, triggers, storage
+  app/                  # Routes only — thin, compose features
+    (marketing)/        # Landing, legal, comparisons
+    (auth)/             # Login / signup / password flows
+    onboarding/         # 4-step creator wizard
+    dashboard/          # Creator dashboard (auth-protected)
+    [username]/         # Public creator pages
+  features/             # Feature-first domain logic
+    payments/           # ⭐ Generic rail registry — start here
+    marketing/ auth/ onboarding/ dashboard/ profile/
+  components/           # ui/ primitives, shared/, three/, layout/
+  lib/                  # supabase clients, validation, constants, seo
+supabase/migrations/    # SQL schema, RLS policies, triggers
 ```
 
-### The payments abstraction
+## 🤝 Contributing
 
-Every rail is a `PaymentMethodDefinition` (`src/features/payments/types.ts`): identifier validation + deep-link builder + presets + currency. Adding Pix later means writing one file in `features/payments/providers/` and flipping its status — no schema or UI changes. The DB already stores `provider` + `identifier` generically.
+Contributions of every size are welcome — bug fixes, UI polish, docs, translations, and above all **new payment rails**. See [CONTRIBUTING.md](CONTRIBUTING.md) for the full guide. Short version:
 
-### Security posture
+1. **Fork** the repo and create a branch: `git checkout -b feat/pix-support` (use `feat/`, `fix/`, `docs/` prefixes).
+2. **Make your change.** Keep routes thin, domain logic in `src/features/*`, validate all input with Zod on the server, no magic strings, no duplicated code.
+3. **Check it passes:** `npm run build && npm run lint` — both must be clean.
+4. **Open a PR** against `main` with a clear description (screenshots for UI changes). Every PR needs **at least one approving review** before it can merge.
 
-- **We only store the public payment identifier** (UPI ID) — never PINs, OTPs, or bank credentials.
-- Row Level Security on all tables; users can only write their own rows.
-- All mutations go through Server Actions with Zod validation; DB constraints mirror app rules (username format, reserved names, URL https-only).
-- Middleware refreshes sessions and enforces auth boundaries; security headers set in `next.config.ts`.
+### Adding a payment rail (most-wanted contribution 🌟)
 
-## Contributing
+The entire abstraction is one interface — `PaymentMethodDefinition` in [`src/features/payments/types.ts`](src/features/payments/types.ts):
 
-BuyMeAGoddie is open source under the [MIT license](LICENSE). Issues and PRs are welcome — the most valuable contribution is a new payment rail (Pix, PayNow, PromptPay, …), which is a single provider file thanks to the registry architecture. See [CONTRIBUTING.md](CONTRIBUTING.md).
+1. Create `src/features/payments/providers/<rail>.ts` implementing identifier validation + the deep-link/QR payload builder (link the rail's official spec).
+2. Replace the `comingSoon(...)` stub in [`registry.ts`](src/features/payments/registry.ts) with your implementation.
+3. Add the provider to the `provider_known` DB constraint in a new migration file.
 
-## Scripts
+No UI changes needed — country selection, onboarding, profile pages, and QR codes pick the new rail up automatically.
 
-- `npm run dev` — develop
-- `npm run build` — production build
-- `npm run lint` — ESLint
+### Ground rules
+
+- 🚫 Never add code that asks for or stores UPI PINs, OTPs, bank passwords, or card numbers. We only ever store **public** payment identifiers.
+- 🚫 No code paths where the platform touches money. Supporter → creator, always.
+- 🔒 Security issues: **don't** open a public issue — email security@buymeagoddie.com.
+
+## 📄 License
+
+[MIT](LICENSE) © Bhuvan Boddu and BuyMeAGoddie contributors.
+
+If this project helps you, ⭐ star the repo — or tap the 💜 button on the site and send a goddie.

@@ -2,6 +2,7 @@ import { Cta } from "@/features/marketing/components/cta";
 import { DemoProfile } from "@/features/marketing/components/demo-profile";
 import { Faq } from "@/features/marketing/components/faq";
 import { Features } from "@/features/marketing/components/features";
+import { FreeForever } from "@/features/marketing/components/free-forever";
 import { Hero } from "@/features/marketing/components/hero";
 import { HowItWorks } from "@/features/marketing/components/how-it-works";
 import { SocialProof } from "@/features/marketing/components/social-proof";
@@ -24,6 +25,7 @@ export default function HomePage() {
       <HowItWorks />
       <Features />
       <DemoProfile />
+      <FreeForever />
       <Faq />
       <Cta />
     </>

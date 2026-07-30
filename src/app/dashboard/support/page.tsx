@@ -1,5 +1,6 @@
 import { ProfileCard } from "@/features/profile/components/profile-card";
 import type { ProfileCardData } from "@/features/profile/types";
+import { siteConfig } from "@/lib/site";
 
 export const metadata = { title: "Support BuyMeAGoddie" };
 
@@ -13,7 +14,7 @@ const PLATFORM_PROFILE: ProfileCardData = {
   bio: "We take zero fees, so the servers run on goodwill (and goddies). If the platform helps you, consider fueling it 💜",
   avatarUrl: null,
   provider: "upi",
-  identifier: "buymeagoddie@upi",
+  identifier: siteConfig.supportUpiId,
   theme: "midnight",
   socialLinks: [
     { platform: "twitter", url: "https://x.com/buymeagoddie" },

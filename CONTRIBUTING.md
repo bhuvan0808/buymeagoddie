@@ -11,7 +11,10 @@ Thanks for wanting to help! BuyMeAGoddie is a zero-fee creator support platform,
 
 ## Before opening a PR
 
+- Branch from `main` with a descriptive name: `feat/...`, `fix/...`, or `docs/...`.
 - `npm run build` and `npm run lint` must both pass.
+- PRs target `main` and require **at least one approving review** before merge (enforced by branch protection).
+- Include screenshots or a short clip for any UI change.
 - Keep the architecture: routes in `src/app` stay thin; domain logic lives in `src/features/*`; no duplicated code, no magic strings.
 - All user input must be validated with Zod on the server and constrained in the database.
 - **Never** introduce code that asks for or stores UPI PINs, OTPs, bank passwords, or card details. The platform only ever stores public payment identifiers.

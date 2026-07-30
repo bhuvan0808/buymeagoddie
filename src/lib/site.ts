@@ -9,6 +9,8 @@ export const siteConfig = {
     "BuyMeAGoddie is a creator payment profile platform. Create a beautiful support page, add your UPI ID, and receive money directly from supporters — no payment gateway, no platform fees, no middleman.",
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://buymeagoddie.com",
   ogImage: "/og.png",
+  /** Where "Support BuyMeAGoddie" payments go — directly, over UPI. */
+  supportUpiId: "bhuvan08@ptyes",
   links: {
     twitter: "https://twitter.com/buymeagoddie",
     github: "https://github.com/bhuvan0808/buymeagoddie",
