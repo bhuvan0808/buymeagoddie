@@ -7,12 +7,13 @@ import { ArrowRight, Heart, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { getGoodie } from "@/features/payments/goodies";
 import { upi } from "@/features/payments/providers/upi";
 import { siteConfig } from "@/lib/site";
 import { customAmountSchema } from "@/lib/validation/profile";
 import { cn, formatCurrency } from "@/lib/utils";
 
-const PRESETS = [49, 99, 199];
+const PRESETS = [50, 100, 250];
 
 /**
  * Floating "keep us free" widget, present on every page. Opens a small
@@ -123,23 +124,28 @@ export function SupportWidget() {
                 >
                   {PRESETS.map((preset) => {
                     const active = selected === preset && !custom;
+                    const goodie = getGoodie(preset);
                     return (
                       <button
                         key={preset}
                         type="button"
                         aria-pressed={active}
+                        aria-label={`₹${preset} — gift ${goodie.label}`}
                         onClick={() => {
                           setSelected(preset);
                           setCustom("");
                         }}
                         className={cn(
-                          "focus-ring flex-1 cursor-pointer rounded-full border px-3 py-2 text-sm font-semibold transition-all active:scale-95",
+                          "focus-ring flex flex-1 cursor-pointer flex-col items-center gap-0.5 rounded-2xl border px-3 py-2 transition-all active:scale-95",
                           active
                             ? "bg-gradient-brand border-transparent text-white shadow-lg"
                             : "border-border text-muted-foreground hover:text-foreground",
                         )}
                       >
-                        ₹{preset}
+                        <span aria-hidden className="text-lg leading-none">
+                          {goodie.emoji}
+                        </span>
+                        <span className="text-sm font-semibold">₹{preset}</span>
                       </button>
                     );
                   })}
@@ -166,7 +172,9 @@ export function SupportWidget() {
                   disabled={!amount}
                   onClick={handleSend}
                 >
-                  Send{amount ? ` ${formatCurrency(amount, upi.currency)}` : ""} via UPI
+                  {amount
+                    ? `Gift us ${getGoodie(amount).emoji} ${getGoodie(amount).label} · ${formatCurrency(amount, upi.currency)}`
+                    : "Send via UPI"}
                   <ArrowRight aria-hidden />
                 </Button>
                 <p className="mt-2.5 text-center text-[10px] text-muted-foreground/70">

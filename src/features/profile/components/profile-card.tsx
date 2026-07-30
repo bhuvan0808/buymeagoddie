@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { QRCodeSVG } from "qrcode.react";
 import { Heart, QrCode, Share2 } from "lucide-react";
 import { toast } from "sonner";
@@ -17,6 +17,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
+import { getGoodie } from "@/features/payments/goodies";
 import { getPaymentMethod } from "@/features/payments/registry";
 import { SocialIcon } from "@/features/profile/components/social-icons";
 import { PROFILE_THEME_STYLES } from "@/features/profile/theme-styles";
@@ -178,7 +179,7 @@ export function ProfileCard({
           </ul>
         ) : null}
 
-        {/* Amount presets */}
+        {/* Amount presets, each tied to a goodie */}
         <div
           role="group"
           aria-label="Choose a support amount"
@@ -186,17 +187,19 @@ export function ProfileCard({
         >
           {method.presetAmounts.map((preset) => {
             const active = selectedAmount === preset && !customAmount;
+            const goodie = getGoodie(preset);
             return (
               <button
                 key={preset}
                 type="button"
                 aria-pressed={active}
+                aria-label={`${formatCurrency(preset, method.currency)} — gift ${goodie.label}`}
                 onClick={() => {
                   setSelectedAmount(preset);
                   setCustomAmount("");
                 }}
                 className={cn(
-                  "focus-ring cursor-pointer rounded-full border px-4 py-2 text-sm font-semibold transition-all active:scale-95",
+                  "focus-ring flex min-w-[4.2rem] cursor-pointer flex-col items-center gap-0.5 rounded-2xl border px-3.5 py-2.5 transition-all active:scale-95",
                   active
                     ? "border-transparent bg-gradient-to-r text-white shadow-lg " +
                         themeStyle.accent
@@ -205,7 +208,12 @@ export function ProfileCard({
                       : "border-black/10 bg-white text-zinc-700 hover:bg-zinc-50",
                 )}
               >
-                {formatCurrency(preset, method.currency)}
+                <span aria-hidden className="text-xl leading-none">
+                  {goodie.emoji}
+                </span>
+                <span className="text-sm font-semibold">
+                  {formatCurrency(preset, method.currency)}
+                </span>
               </button>
             );
           })}
@@ -248,6 +256,30 @@ export function ProfileCard({
           </div>
         ) : null}
 
+        {/* Live goodie indicator */}
+        <AnimatePresence mode="wait">
+          {amount ? (
+            <motion.p
+              key={getGoodie(amount).label}
+              initial={{ opacity: 0, y: 8, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.25 }}
+              role="status"
+              className={cn(
+                "text-sm font-medium",
+                dark ? "text-white/80" : "text-zinc-600",
+              )}
+            >
+              You&apos;re gifting{" "}
+              <span aria-hidden className="text-lg align-middle">
+                {getGoodie(amount).emoji}
+              </span>{" "}
+              {getGoodie(amount).label}!
+            </motion.p>
+          ) : null}
+        </AnimatePresence>
+
         {/* Primary action */}
         <Button
           size="xl"
@@ -258,7 +290,9 @@ export function ProfileCard({
           )}
         >
           <Heart className="fill-current" aria-hidden />
-          Buy Me a Goddie{amount ? ` · ${formatCurrency(amount, method.currency)}` : ""}
+          {amount
+            ? `Gift ${getGoodie(amount).emoji} for ${formatCurrency(amount, method.currency)}`
+            : "Buy Me a Goddie"}
         </Button>
 
         {/* Secondary actions */}
