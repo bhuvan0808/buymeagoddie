@@ -1,0 +1,30 @@
+name: ✨ Feature request
+description: Suggest an idea or improvement
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: Describe the creator/supporter pain point, not just the solution.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed solution
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - Creator profile pages
+        - Payments / new payment rail (Pix, PayNow, …)
+        - Dashboard
+        - Landing / marketing
+        - Auth / onboarding
+        - Other
+    validations:
+      required: true

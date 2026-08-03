@@ -1,0 +1,38 @@
+name: 🐛 Bug report
+description: Something isn't working
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Clear description of the bug, with screenshots if it's visual.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. See error
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Page URL
+      placeholder: https://buymeagoddie.vercel.app/...
+  - type: input
+    id: device
+    attributes:
+      label: Device & browser
+      placeholder: e.g. iPhone 15, Safari / Windows 11, Chrome 126
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: This is not a security vulnerability (those go to bhuvanboddu08@gmail.com, never a public issue)
+          required: true
