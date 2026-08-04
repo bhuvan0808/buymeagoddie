@@ -124,27 +124,30 @@ export function SupportWidget() {
                 >
                   {PRESETS.map((preset) => {
                     const active = selected === preset && !custom;
-                    const goodie = getGoodie(preset);
+                    const presetGoodie = getGoodie(preset);
+                    const PresetIcon = presetGoodie.icon;
                     return (
                       <button
                         key={preset}
                         type="button"
                         aria-pressed={active}
-                        aria-label={`₹${preset} — gift ${goodie.label}`}
+                        aria-label={`₹${preset} — gift ${presetGoodie.label}`}
                         onClick={() => {
                           setSelected(preset);
                           setCustom("");
                         }}
                         className={cn(
-                          "focus-ring flex flex-1 cursor-pointer flex-col items-center gap-0.5 rounded-2xl border px-3 py-2 transition-all active:scale-95",
+                          "focus-ring flex flex-1 cursor-pointer flex-col items-center gap-1 rounded-2xl border px-3 py-2.5 transition-all active:scale-95",
                           active
                             ? "bg-gradient-brand border-transparent text-white shadow-lg"
-                            : "border-border text-muted-foreground hover:text-foreground",
+                            : "border-border text-muted-foreground hover:border-foreground/25 hover:text-foreground",
                         )}
                       >
-                        <span aria-hidden className="text-lg leading-none">
-                          {goodie.emoji}
-                        </span>
+                        <PresetIcon
+                          className="size-4"
+                          strokeWidth={2.25}
+                          aria-hidden
+                        />
                         <span className="text-sm font-semibold">₹{preset}</span>
                       </button>
                     );
@@ -173,7 +176,7 @@ export function SupportWidget() {
                   onClick={handleSend}
                 >
                   {amount
-                    ? `Gift us ${getGoodie(amount).emoji} ${getGoodie(amount).label} · ${formatCurrency(amount, upi.currency)}`
+                    ? `Gift us ${getGoodie(amount).label} · ${formatCurrency(amount, upi.currency)}`
                     : "Send via UPI"}
                   <ArrowRight aria-hidden />
                 </Button>

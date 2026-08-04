@@ -16,9 +16,10 @@ export const PROFILE_THEME_STYLES: Record<
   }
 > = {
   midnight: {
-    page: "bg-[radial-gradient(ellipse_at_top,oklch(0.24_0.06_292),oklch(0.14_0.02_290))]",
+    // Lavender-forward, matching the LinkYaar family aesthetic.
+    page: "bg-[radial-gradient(ellipse_at_top,oklch(0.27_0.07_296),oklch(0.15_0.025_292))]",
     dark: true,
-    accent: "from-violet-500 via-fuchsia-500 to-amber-400",
+    accent: "from-indigo-400 via-violet-500 to-fuchsia-500",
   },
   aurora: {
     page: "bg-[radial-gradient(ellipse_at_top,oklch(0.3_0.08_220),oklch(0.15_0.03_240))]",
@@ -31,8 +32,8 @@ export const PROFILE_THEME_STYLES: Record<
     accent: "from-orange-400 via-rose-400 to-fuchsia-500",
   },
   daylight: {
-    page: "bg-[radial-gradient(ellipse_at_top,oklch(0.99_0.01_300),oklch(0.93_0.02_290))]",
+    page: "bg-[radial-gradient(ellipse_at_top,oklch(0.99_0.01_300),oklch(0.94_0.025_295))]",
     dark: false,
-    accent: "from-violet-500 via-fuchsia-500 to-amber-400",
+    accent: "from-indigo-400 via-violet-500 to-fuchsia-500",
   },
 };

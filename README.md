@@ -113,6 +113,12 @@ No UI changes needed — country selection, onboarding, profile pages, and QR co
 - 🚫 No code paths where the platform touches money. Supporter → creator, always.
 - 🔒 Security issues: **don't** open a public issue — email bhuvanboddu08@gmail.com.
 
+## 🙏 Credits
+
+3D models in the landing hero, used under CC-BY via [Poly Pizza](https://poly.pizza):
+- [Coin](https://poly.pizza) by **Quaternius**
+- [Dollar](https://poly.pizza) by **J-Toastie**
+
 ## 📄 License
 
 [MIT](LICENSE) © Bhuvan Boddu and BuyMeAGoddie contributors.

@@ -66,6 +66,8 @@ export function ProfileCard({
     });
   }, [method, data.identifier, data.name, amount]);
 
+  const goodie = amount ? getGoodie(amount) : null;
+
   function handleSupport() {
     if (mode === "preview") {
       toast("This is a preview — on your live page this opens the UPI app.", {
@@ -187,31 +189,42 @@ export function ProfileCard({
         >
           {method.presetAmounts.map((preset) => {
             const active = selectedAmount === preset && !customAmount;
-            const goodie = getGoodie(preset);
+            const presetGoodie = getGoodie(preset);
+            const PresetIcon = presetGoodie.icon;
             return (
               <button
                 key={preset}
                 type="button"
                 aria-pressed={active}
-                aria-label={`${formatCurrency(preset, method.currency)} — gift ${goodie.label}`}
+                aria-label={`${formatCurrency(preset, method.currency)} — gift ${presetGoodie.label}`}
                 onClick={() => {
                   setSelectedAmount(preset);
                   setCustomAmount("");
                 }}
                 className={cn(
-                  "focus-ring flex min-w-[4.2rem] cursor-pointer flex-col items-center gap-0.5 rounded-2xl border px-3.5 py-2.5 transition-all active:scale-95",
+                  "focus-ring flex min-w-[4.4rem] cursor-pointer flex-col items-center gap-1.5 rounded-2xl border px-3.5 py-3 transition-all duration-200 active:scale-95",
                   active
                     ? "border-transparent bg-gradient-to-r text-white shadow-lg " +
                         themeStyle.accent
                     : dark
-                      ? "border-white/15 bg-white/5 text-white/80 hover:bg-white/10"
-                      : "border-black/10 bg-white text-zinc-700 hover:bg-zinc-50",
+                      ? "border-white/10 bg-white/[0.04] text-white/70 hover:border-white/25 hover:bg-white/[0.08] hover:text-white"
+                      : "border-black/[0.08] bg-white text-zinc-600 hover:border-black/20 hover:text-zinc-900",
                 )}
               >
-                <span aria-hidden className="text-xl leading-none">
-                  {goodie.emoji}
+                <span
+                  aria-hidden
+                  className={cn(
+                    "flex size-7 items-center justify-center rounded-full transition-colors",
+                    active
+                      ? "bg-white/25"
+                      : dark
+                        ? "bg-white/10"
+                        : "bg-zinc-100",
+                  )}
+                >
+                  <PresetIcon className="size-3.5" strokeWidth={2.25} />
                 </span>
-                <span className="text-sm font-semibold">
+                <span className="text-sm font-semibold tracking-tight">
                   {formatCurrency(preset, method.currency)}
                 </span>
               </button>
@@ -258,24 +271,28 @@ export function ProfileCard({
 
         {/* Live goodie indicator */}
         <AnimatePresence mode="wait">
-          {amount ? (
+          {goodie ? (
             <motion.p
-              key={getGoodie(amount).label}
+              key={goodie.label}
               initial={{ opacity: 0, y: 8, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
               transition={{ duration: 0.25 }}
               role="status"
               className={cn(
-                "text-sm font-medium",
-                dark ? "text-white/80" : "text-zinc-600",
+                "flex items-center gap-2 rounded-full border px-4 py-1.5 text-sm font-medium",
+                dark
+                  ? "border-white/10 bg-white/[0.06] text-white/85"
+                  : "border-black/[0.06] bg-zinc-50 text-zinc-700",
               )}
             >
-              You&apos;re gifting{" "}
-              <span aria-hidden className="text-lg align-middle">
-                {getGoodie(amount).emoji}
-              </span>{" "}
-              {getGoodie(amount).label}!
+              You&apos;re gifting
+              <goodie.icon
+                className="size-4"
+                strokeWidth={2.25}
+                aria-hidden
+              />
+              <span className="font-semibold">{goodie.label}</span>
             </motion.p>
           ) : null}
         </AnimatePresence>
@@ -289,9 +306,13 @@ export function ProfileCard({
             themeStyle.accent,
           )}
         >
-          <Heart className="fill-current" aria-hidden />
-          {amount
-            ? `Gift ${getGoodie(amount).emoji} for ${formatCurrency(amount, method.currency)}`
+          {goodie ? (
+            <goodie.icon strokeWidth={2.25} aria-hidden />
+          ) : (
+            <Heart className="fill-current" aria-hidden />
+          )}
+          {goodie && amount
+            ? `Gift ${goodie.label} · ${formatCurrency(amount, method.currency)}`
             : "Buy Me a Goddie"}
         </Button>
 

@@ -5,8 +5,8 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { Float } from "@react-three/drei";
 import type { Group } from "three";
 
-import { Coin } from "@/components/three/coin";
 import { GlassPanel } from "@/components/three/glass-panel";
+import { CoinModel, NoteModel } from "@/components/three/money-models";
 
 /**
  * Wraps scene content in a group that eases toward the mouse position for
@@ -39,35 +39,36 @@ function SceneContents() {
   return (
     <ParallaxRig>
       {/* Gradient lighting: violet key, fuchsia fill, warm gold accent */}
-      <ambientLight intensity={0.5} />
-      <directionalLight position={[4, 6, 5]} intensity={1.4} color="#e9e2ff" />
-      <pointLight position={[-6, 2, -2]} intensity={12} color="#a855f7" />
-      <pointLight position={[6, -3, 2]} intensity={10} color="#f0abfc" />
-      <pointLight position={[0, 4, -4]} intensity={8} color="#fbbf24" />
+      <ambientLight intensity={0.6} />
+      <directionalLight position={[4, 6, 5]} intensity={1.6} color="#e9e2ff" />
+      <pointLight position={[-6, 2, -2]} intensity={14} color="#a855f7" />
+      <pointLight position={[6, -3, 2]} intensity={11} color="#f0abfc" />
+      <pointLight position={[0, 4, -4]} intensity={9} color="#fbbf24" />
 
-      <Float speed={1.4} rotationIntensity={0.3} floatIntensity={0.6}>
-        <Coin position={[2.6, 0.4, -0.5]} scale={1.15} />
+      {/* Low-poly coins — "Coin" by Quaternius via Poly Pizza */}
+      <Float speed={1.4} rotationIntensity={0.25} floatIntensity={0.6}>
+        <CoinModel position={[2.7, 0.5, -0.5]} size={1.15} />
       </Float>
-      <Float speed={1.1} rotationIntensity={0.4} floatIntensity={0.8}>
-        <Coin position={[-2.9, 1.2, -1]} scale={0.85} rotationSpeed={0.55} />
+      <Float speed={1.1} rotationIntensity={0.3} floatIntensity={0.8}>
+        <CoinModel position={[-2.9, 1.3, -1]} size={0.85} spinSpeed={0.65} />
       </Float>
-      <Float speed={1.7} rotationIntensity={0.35} floatIntensity={0.7}>
-        <Coin position={[-1.8, -1.4, 0.2]} scale={0.6} rotationSpeed={0.7} />
+      <Float speed={1.7} rotationIntensity={0.3} floatIntensity={0.7}>
+        <CoinModel position={[-1.9, -1.4, 0.2]} size={0.6} spinSpeed={0.8} />
       </Float>
-      <Float speed={0.9} rotationIntensity={0.3} floatIntensity={0.5}>
-        <Coin position={[3.4, -1.1, -1.6]} scale={0.7} rotationSpeed={0.35} />
+      <Float speed={0.9} rotationIntensity={0.25} floatIntensity={0.5}>
+        <CoinModel position={[3.4, -1.2, -1.6]} size={0.7} spinSpeed={0.4} />
       </Float>
-      <Float speed={1.3} rotationIntensity={0.2} floatIntensity={0.9}>
-        <Coin position={[0.4, 1.9, -2.2]} scale={0.5} rotationSpeed={0.6} />
+
+      {/* Drifting notes — "Dollar" by J-Toastie via Poly Pizza */}
+      <Float speed={0.8} rotationIntensity={0.15} floatIntensity={0.9}>
+        <NoteModel position={[0.6, 2, -2.4]} size={1.5} />
+      </Float>
+      <Float speed={1.2} rotationIntensity={0.2} floatIntensity={0.7}>
+        <NoteModel position={[-3.6, -0.6, -2]} size={1.3} driftSpeed={0.5} />
       </Float>
 
       <GlassPanel
-        position={[-3.4, -0.4, -1.8]}
-        rotation={[0.1, 0.5, -0.08]}
-        size={[1.8, 1.15, 0.07]}
-      />
-      <GlassPanel
-        position={[3.2, 1.7, -2.6]}
+        position={[3.3, 1.8, -2.8]}
         rotation={[-0.05, -0.4, 0.06]}
         size={[1.5, 0.95, 0.07]}
         driftSpeed={0.7}
