@@ -11,6 +11,8 @@
 
 [Live site](https://buymeagoddie.vercel.app) · [Report a bug](https://github.com/bhuvan0808/buymeagoddie/issues/new) · [Request a feature](https://github.com/bhuvan0808/buymeagoddie/issues/new)
 
+*Part of the [LinkYaar](https://linkyaar.com) open-source family — everything you are, one beautiful link.*
+
 </div>
 
 ---

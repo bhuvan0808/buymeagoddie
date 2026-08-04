@@ -33,6 +33,22 @@ export default function AboutPage() {
         Europe, Aani in the UAE — the world is moving to instant, free,
         direct payments, and creator pages should too.
       </p>
+      <h2>Part of the LinkYaar family</h2>
+      <p>
+        BuyMeAGoddie is a sister project of{" "}
+        <a
+          href="https://linkyaar.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-primary underline"
+        >
+          LinkYaar
+        </a>{" "}
+        — the open-source link-in-bio platform (&quot;Everything you are. One
+        beautiful link.&quot;). Same philosophy, same community: free,
+        open-source tools that put creators first. Your LinkYaar page and
+        your BuyMeAGoddie page are better together.
+      </p>
     </ContentPage>
   );
 }

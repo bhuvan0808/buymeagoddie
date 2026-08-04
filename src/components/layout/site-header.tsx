@@ -10,7 +10,7 @@ import { Logo } from "@/components/shared/logo";
 import { ThemeToggle } from "@/components/shared/theme-toggle";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/lib/constants";
-import { mainNav } from "@/lib/site";
+import { mainNav, siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 /**
@@ -38,7 +38,18 @@ export function SiteHeader({ stars = null }: { stars?: number | null }) {
         aria-label="Main"
         className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6"
       >
-        <Logo />
+        <span className="flex items-center gap-2.5">
+          <Logo />
+          <a
+            href={siteConfig.parent.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={`${siteConfig.parent.name} — ${siteConfig.parent.tagline}`}
+            className="focus-ring glass hidden items-center rounded-full px-2.5 py-1 text-[11px] font-medium text-muted-foreground transition-colors hover:text-foreground md:inline-flex"
+          >
+            by&nbsp;<span className="font-semibold">{siteConfig.parent.name}</span>
+          </a>
+        </span>
 
         <ul className="hidden items-center gap-1 lg:flex">
           {mainNav.map((item) => (

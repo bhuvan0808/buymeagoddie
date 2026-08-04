@@ -26,6 +26,19 @@ export function SiteFooter({ stars = null }: { stars?: number | null }) {
               </p>
               <GitHubStarButton stars={stars} className="w-fit" />
             </div>
+            <a
+              href={siteConfig.parent.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="focus-ring glass group mt-2 flex w-fit flex-col gap-0.5 rounded-2xl px-4 py-3 transition-colors hover:bg-foreground/5"
+            >
+              <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                Part of the {siteConfig.parent.name} family
+              </span>
+              <span className="text-sm font-semibold group-hover:text-gradient">
+                {siteConfig.parent.name} — {siteConfig.parent.tagline}
+              </span>
+            </a>
           </div>
 
           {footerNav.map((group) => (

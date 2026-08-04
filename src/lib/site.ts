@@ -13,6 +13,12 @@ export const siteConfig = {
   supportUpiId: "bhuvan08@ptyes",
   /** Support + security contact until a custom domain email exists. */
   supportEmail: "bhuvanboddu08@gmail.com",
+  /** Parent project — BuyMeAGoddie is part of the LinkYaar OSS family. */
+  parent: {
+    name: "LinkYaar",
+    url: "https://linkyaar.com",
+    tagline: "Everything you are. One beautiful link.",
+  },
   links: {
     twitter: "https://twitter.com/buymeagoddie",
     github: "https://github.com/bhuvan0808/buymeagoddie",
