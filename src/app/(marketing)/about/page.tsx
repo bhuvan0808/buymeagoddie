@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 
 import { ContentPage } from "@/components/shared/content-page";
+import { SocialIcon } from "@/features/profile/components/social-icons";
+import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "About",
@@ -32,6 +34,28 @@ export default function AboutPage() {
         Singapore, PromptPay in Thailand, QRIS in Indonesia, SEPA Instant in
         Europe, Aani in the UAE — the world is moving to instant, free,
         direct payments, and creator pages should too.
+      </p>
+      <h2>The human behind it</h2>
+      <p>
+        BuyMeAGoddie is built and maintained by{" "}
+        <strong>{siteConfig.maintainer.name}</strong> —{" "}
+        {siteConfig.maintainer.role.toLowerCase()}. Every feature, every
+        pixel, every commit: one person shipping for the creator community.
+        That also means {siteConfig.maintainer.note.toLowerCase()}
+      </p>
+      <p className="flex flex-wrap gap-3">
+        {siteConfig.maintainer.socials.map((social) => (
+          <a
+            key={social.platform}
+            href={social.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="focus-ring glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-foreground transition-colors hover:text-primary"
+          >
+            <SocialIcon platform={social.platform} className="size-4" />
+            {social.label}
+          </a>
+        ))}
       </p>
       <h2>Part of the LinkYaar family</h2>
       <p>

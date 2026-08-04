@@ -19,6 +19,25 @@ export const siteConfig = {
     url: "https://linkyaar.com",
     tagline: "Everything you are. One beautiful link.",
   },
+  /** The human behind the project. */
+  maintainer: {
+    name: "Bhuvan Boddu",
+    role: "Founder & solo maintainer",
+    note: "One person, one keyboard — replies may take a little while, but they always come.",
+    socials: [
+      { platform: "github", label: "GitHub", url: "https://github.com/bhuvan0808" },
+      {
+        platform: "linkedin",
+        label: "LinkedIn",
+        url: "https://www.linkedin.com/in/bhuvanboddu/",
+      },
+      {
+        platform: "instagram",
+        label: "Instagram",
+        url: "https://www.instagram.com/buildwithbhuvan",
+      },
+    ],
+  },
   links: {
     twitter: "https://twitter.com/buymeagoddie",
     github: "https://github.com/bhuvan0808/buymeagoddie",

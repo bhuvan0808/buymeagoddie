@@ -2,6 +2,8 @@
 
 Thanks for wanting to help! BuyMeAGoddie is a zero-fee creator support platform, and contributions of every size are welcome — bug fixes, new payment rails, UI polish, docs.
 
+> **Note:** this project is maintained solo by [@bhuvan0808](https://github.com/bhuvan0808) — reviews and replies may take a few days. Patience appreciated 💜
+
 ## Getting set up
 
 1. Fork and clone the repo, then `npm install`.

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { GitHubStarButton } from "@/components/shared/github-star-button";
 import { Logo } from "@/components/shared/logo";
 import { Badge } from "@/components/ui/badge";
+import { SocialIcon } from "@/features/profile/components/social-icons";
 import { footerNav, siteConfig } from "@/lib/site";
 
 export function SiteFooter({ stars = null }: { stars?: number | null }) {
@@ -68,10 +69,37 @@ export function SiteFooter({ stars = null }: { stars?: number | null }) {
           ))}
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/60 pt-6 text-sm text-muted-foreground sm:flex-row">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border/60 pt-6 text-sm text-muted-foreground lg:flex-row">
           <p>
             © {new Date().getFullYear()} {siteConfig.name}. All rights
             reserved.
+          </p>
+          <p className="flex items-center gap-2.5">
+            <span>
+              Crafted solo by{" "}
+              <a
+                href={siteConfig.maintainer.socials[0]!.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="focus-ring rounded font-medium text-foreground hover:text-primary"
+              >
+                {siteConfig.maintainer.name}
+              </a>
+            </span>
+            <span className="flex items-center gap-1">
+              {siteConfig.maintainer.socials.map((social) => (
+                <a
+                  key={social.platform}
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${siteConfig.maintainer.name} on ${social.label}`}
+                  className="focus-ring flex size-7 items-center justify-center rounded-full transition-colors hover:bg-foreground/10 hover:text-foreground"
+                >
+                  <SocialIcon platform={social.platform} className="size-3.5" />
+                </a>
+              ))}
+            </span>
           </p>
           <p>
             Not a payment gateway. Not a wallet. Money flows directly from

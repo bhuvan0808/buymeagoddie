@@ -113,6 +113,14 @@ No UI changes needed — country selection, onboarding, profile pages, and QR co
 - 🚫 No code paths where the platform touches money. Supporter → creator, always.
 - 🔒 Security issues: **don't** open a public issue — email bhuvanboddu08@gmail.com.
 
+## 👋 Maintainer
+
+Built and maintained solo by **[Bhuvan Boddu](https://github.com/bhuvan0808)** — founder, designer, and the entire engineering team 🙂. One person, one keyboard: responses to issues and PRs may take a little while, but they always come.
+
+[![GitHub](https://img.shields.io/badge/GitHub-bhuvan0808-181717?logo=github)](https://github.com/bhuvan0808)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-bhuvanboddu-0A66C2?logo=linkedin)](https://www.linkedin.com/in/bhuvanboddu/)
+[![Instagram](https://img.shields.io/badge/Instagram-buildwithbhuvan-E4405F?logo=instagram)](https://www.instagram.com/buildwithbhuvan)
+
 ## 🙏 Credits
 
 3D models in the landing hero, used under CC-BY via [Poly Pizza](https://poly.pizza):
